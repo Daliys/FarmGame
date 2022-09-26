@@ -22,7 +22,7 @@ public class MouseControl : MonoBehaviour
     /**
      * Action, mouse is clicked 
      */
-    public static event Action<Vector3> OnMouseButtonClicked;
+    public static event Action<RaycastHit> OnMouseButtonClicked;
 
     /**
      * Local variable of mouse position 
@@ -74,29 +74,26 @@ public class MouseControl : MonoBehaviour
     /// </summary>
     private void OnMouseClicked()
     {
-        var ray =  _mainCamera.ScreenPointToRay(Input.mousePosition);
+        var ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast (ray, out var hit))
+        if (Physics.Raycast(ray, out var hit))
         {
-            if (OnMouseButtonClicked != null)
+            if (_mouseFollowingGameObject)
             {
-                if (_mouseFollowingGameObject != null)
-                {
-                    _actionForFollowingObject.Invoke();
-                    _mouseFollowingGameObject = null;
-                    _actionForFollowingObject = null;
-                }
-                else
-                {
-                    OnMouseButtonClicked.Invoke(hit.point);
-                }
+                _actionForFollowingObject.Invoke();
+                _mouseFollowingGameObject = null;
+                _actionForFollowingObject = null;
+            }
+            else
+            {
+                OnMouseButtonClicked?.Invoke(hit);
             }
         }
     }
 
     private void OnMouseChangedPosition()
     {
-        if (_mouseFollowingGameObject == null) return;
+        if (!_mouseFollowingGameObject) return;
 
         var ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
 

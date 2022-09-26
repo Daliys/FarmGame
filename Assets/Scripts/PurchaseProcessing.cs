@@ -26,7 +26,7 @@ public class PurchaseProcessing : MonoBehaviour
         if (isSuccessful)
         {
             BoxCollider boxCollider = itemGameObject.GetComponent<BoxCollider>();
-            if (boxCollider != null) boxCollider.enabled = true;
+            if (boxCollider) boxCollider.enabled = true;
         }
         else
         {
