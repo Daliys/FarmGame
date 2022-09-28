@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Garden
   - Ground
+  - Well
   layers:
   - Default
   - TransparentFX
