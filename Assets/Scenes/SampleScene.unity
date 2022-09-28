@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1077,8 +1077,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.47, y: 3.7, z: 0.7}
+  m_LocalScale: {x: 0.75461847, y: 0.8947762, z: 0.8947762}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1693,7 +1693,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 1.68
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -1720,14 +1720,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.2669511, y: -0.17693175, z: 0.045218557, w: 0.9462492}
-  m_LocalPosition: {x: 0, y: 4.53, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.3633294, y: -0.29009122, z: 0.12015971, w: 0.87715477}
+  m_LocalPosition: {x: 0.29, y: 7.36, z: -4.56}
+  m_LocalScale: {x: 0.82918775, y: 1.1326, z: 1.1326}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 31.413, y: -21.35, z: -0.597}
+  m_LocalEulerAnglesHint: {x: 45, y: -36.6, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2191,7 +2191,7 @@ Transform:
   m_GameObject: {fileID: 1355564899}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.71, y: 1.33, z: 2.94}
-  m_LocalScale: {x: 5.19, y: 3.07, z: 3.24}
+  m_LocalScale: {x: 4.5349183, y: 3.07, z: 3.6842732}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
