@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class MouseControl : MonoBehaviour
 {
@@ -38,34 +37,33 @@ public class MouseControl : MonoBehaviour
      * Speed of the camera movement when cursor in movementZone
      */
     [SerializeField]private float cameraMovementSpeed;
-
+    
     /**
-     * GameObject which following mouse in the 3D world
+     * Action of buying item from shop. It's invoke after mouseClicked
      */
-    private GameObject _mouseFollowingGameObject;
+    private Func<RaycastHit, bool> _actionForBuyingItems;
 
-    /**
-     * Action of mouseFollowingObject which Invoke after mouseClicked
-     */
-    private Action _actionForFollowingObject;
+    private CursorChanger _cursorChanger;
     
     void Start()
     {
         _mainCamera = GetComponent<Camera>();
         _windowSize = new Vector2(Screen.width, Screen.height);
+        _cursorChanger = GetComponent<CursorChanger>();
     }
 
     // Update is called once per frame
 
     void Update()
     {
-        OnMouseChangedPosition();
+        //FIXME remove not using method
+        //OnMouseChangedPosition();
         
         if (Input.GetMouseButtonDown(0))
         {
             OnMouseClicked();
         }
-        
+       
         CheckAndMoveCamera();
     }
 
@@ -78,11 +76,13 @@ public class MouseControl : MonoBehaviour
 
         if (Physics.Raycast(ray, out var hit))
         {
-            if (_mouseFollowingGameObject)
+            if (_actionForBuyingItems != null)
             {
-                _actionForFollowingObject.Invoke();
-                _mouseFollowingGameObject = null;
-                _actionForFollowingObject = null;
+                if( _actionForBuyingItems.Invoke(hit))
+                {
+                    _actionForBuyingItems = null;
+                    _cursorChanger.ChangeCursor(CursorChanger.CursorType.Default);
+                }
             }
             else
             {
@@ -93,22 +93,20 @@ public class MouseControl : MonoBehaviour
 
     private void OnMouseChangedPosition()
     {
-        if (!_mouseFollowingGameObject) return;
+        if (_actionForBuyingItems != null) return;
 
         var ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out var hit))
         {
-            float yPos = _mouseFollowingGameObject.transform.position.y;
-            // FIXME добавить фильтр слоёв, чтобы не происходила ситуация что он получает позицию У на самом объекте
-            _mouseFollowingGameObject.transform.position = new Vector3(hit.point.x, yPos, hit.point.z);
+         
         }
     }
 
-    public void AddFollowingMouseItem(GameObject followingObject, Action actionAfterMouseClick)
+    public void AddFollowingMouseItem(Func<RaycastHit, bool> actionAfterMouseClick)
     {
-        _mouseFollowingGameObject = followingObject;
-        _actionForFollowingObject = actionAfterMouseClick;
+        _actionForBuyingItems = actionAfterMouseClick;
+        _cursorChanger.ChangeCursor(CursorChanger.CursorType.Seed);
     }
 
     /**

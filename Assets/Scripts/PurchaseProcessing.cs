@@ -4,36 +4,43 @@ public class PurchaseProcessing : MonoBehaviour
 {
     [SerializeField] private MouseControl mouseControl;
     private ShopItemScriptableObject _currentItem;
-    private GameObject itemGameObject;
     public void ProcessBuying(ShopItemScriptableObject item)
     {
         if (Game.Instance.IsEnoughMoneyToBuy(item.cost))
         {
             _currentItem = item;
-            itemGameObject = Instantiate(item.prefab);
-            gameObject.name = item.itemName;
+            //itemGameObject = Instantiate(item.prefab);
+            //gameObject.name = item.itemName;
             
-            mouseControl.AddFollowingMouseItem(itemGameObject, PurchaseItem);
+            mouseControl.AddFollowingMouseItem(PurchaseItem);
         }
     }
 
     /// <summary>
     /// Trying to buy item
     /// </summary>
-    private void PurchaseItem()
+    private bool PurchaseItem(RaycastHit hit)
     {
+        if (!hit.collider.CompareTag(Tags.Garden)) return false;
+
+        Garden garden = hit.collider.GetComponent<Garden>();
+        
+        if (garden.IsHaveSeed) return false;
+
         bool isSuccessful = Game.Instance.PurchaseItem(_currentItem.cost);
+        
         if (isSuccessful)
         {
-            BoxCollider boxCollider = itemGameObject.GetComponent<BoxCollider>();
-            if (boxCollider) boxCollider.enabled = true;
+            garden.setSeed(_currentItem.seedInformation);
         }
         else
         {
-            Destroy(itemGameObject); 
+            return false;
         }
-
-        itemGameObject = null;
+        
         _currentItem = null;
+        
+        return true;
+        
     }
 }
