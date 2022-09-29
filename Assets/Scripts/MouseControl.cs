@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MouseControl : MonoBehaviour
 {
@@ -11,7 +12,12 @@ public class MouseControl : MonoBehaviour
     /**
      * percent of window size in height, during pointing in this area the camera will move
      */
-    [SerializeField] private float cameraBorderHeightPercent; 
+    [SerializeField] private float cameraBorderHeightPercent;
+
+    /// <summary>
+    /// layers which will be processing when mouse is clicking 
+    /// </summary>
+    [SerializeField] private LayerMask mouseLayerMask;
     
     /**
      * Reference to Camera <see cref="Camera"/>
@@ -61,7 +67,11 @@ public class MouseControl : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
-            OnMouseClicked();
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                OnMouseClicked();
+            }
+           
         }
        
         CheckAndMoveCamera();

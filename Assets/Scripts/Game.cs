@@ -5,7 +5,12 @@ public class Game : MonoBehaviour
 {
     public static Game Instance;
 
-    private void Start()
+    /**
+     * Action calls when amount of money changing
+     */
+    public static event Action<int> OnMoneyChanged;
+
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -15,6 +20,7 @@ public class Game : MonoBehaviour
         {
             Destroy(this);
         }
+        OnMoneyChanged?.Invoke(money);
     }
 
     /**
@@ -33,6 +39,8 @@ public class Game : MonoBehaviour
         if (!IsEnoughMoneyToBuy(cost)) return false;
         
         money -= cost;
+        OnMoneyChanged?.Invoke(money);
+        
         return true;
     }
 
