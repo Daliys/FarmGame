@@ -8,16 +8,11 @@ public class MouseControl : MonoBehaviour
      * percent of window size in width, during pointing in this area the camera will move 
      */
     [SerializeField] private float cameraBorderWidthPercent;
-    
+
     /**
      * percent of window size in height, during pointing in this area the camera will move
      */
     [SerializeField] private float cameraBorderHeightPercent;
-
-    /// <summary>
-    /// layers which will be processing when mouse is clicking 
-    /// </summary>
-    [SerializeField] private LayerMask mouseLayerMask;
     
     /**
      * Reference to Camera <see cref="Camera"/>
@@ -42,20 +37,38 @@ public class MouseControl : MonoBehaviour
     /**
      * Speed of the camera movement when cursor in movementZone
      */
-    [SerializeField]private float cameraMovementSpeed;
-    
+    [SerializeField] private float cameraMovementSpeed;
+
+    /// <summary>
+    /// Speed of the camera zoom
+    /// </summary>
+    [SerializeField] private float cameraZoomSpeed;
+
+    /// <summary>
+    /// Borders of the camera zoom.
+    /// [x - zoom in border; y - zoom out border]
+    /// </summary>
+    [SerializeField] private Vector2 borderOfCameraZoom;
+
+    /// <summary>
+    /// Current zoom - using to control zoom borders
+    /// </summary>
+    private float _currentZoom;
+
     /**
      * Action of buying item from shop. It's invoke after mouseClicked
      */
     private Func<RaycastHit, bool> _actionForBuyingItems;
 
     private CursorChanger _cursorChanger;
-    
+
+
     void Start()
     {
         _mainCamera = GetComponent<Camera>();
         _windowSize = new Vector2(Screen.width, Screen.height);
         _cursorChanger = GetComponent<CursorChanger>();
+        _currentZoom = 0;
     }
 
     // Update is called once per frame
@@ -64,16 +77,17 @@ public class MouseControl : MonoBehaviour
     {
         //FIXME remove not using method
         //OnMouseChangedPosition();
-        
+
+        MouseZooming();
+
         if (Input.GetMouseButtonDown(0))
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 OnMouseClicked();
             }
-           
         }
-       
+
         CheckAndMoveCamera();
     }
 
@@ -88,7 +102,7 @@ public class MouseControl : MonoBehaviour
         {
             if (_actionForBuyingItems != null)
             {
-                if( _actionForBuyingItems.Invoke(hit))
+                if (_actionForBuyingItems.Invoke(hit))
                 {
                     _actionForBuyingItems = null;
                     _cursorChanger.ChangeCursor(CursorChanger.CursorType.Default);
@@ -101,6 +115,22 @@ public class MouseControl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Changing zoom if player scrolling wheel
+    /// </summary>
+    private void MouseZooming()
+    {
+        var mouseWheels = Input.GetAxis("Mouse ScrollWheel");
+        if (mouseWheels != 0)
+        {
+            if (_currentZoom + mouseWheels < borderOfCameraZoom.x && _currentZoom + mouseWheels > borderOfCameraZoom.y)
+            {
+                _currentZoom += mouseWheels;
+                transform.Translate(mouseWheels * cameraZoomSpeed * Vector3.forward);
+            }
+        }
+    }
+
     private void OnMouseChangedPosition()
     {
         if (_actionForBuyingItems != null) return;
@@ -109,7 +139,7 @@ public class MouseControl : MonoBehaviour
 
         if (Physics.Raycast(ray, out var hit))
         {
-         
+
         }
     }
 
@@ -127,7 +157,7 @@ public class MouseControl : MonoBehaviour
         _mousePosition = Input.mousePosition;
         float mousePercentX = _mousePosition.x / _windowSize.x;
         float mousePercentY = _mousePosition.y / _windowSize.y;
-        
+
         if (mousePercentX < cameraBorderWidthPercent)
         {
             MoveCamera(Vector3.left);
@@ -136,7 +166,7 @@ public class MouseControl : MonoBehaviour
         {
             MoveCamera(Vector3.right);
         }
-        
+
         if (mousePercentY < cameraBorderHeightPercent)
         {
             MoveCamera(Vector3.back);
@@ -154,7 +184,7 @@ public class MouseControl : MonoBehaviour
     private void MoveCamera(Vector3 vector)
     {
         float y = transform.position.y;
-        transform.Translate( Time.deltaTime * cameraMovementSpeed * vector, Space.Self);
+        transform.Translate(Time.deltaTime * cameraMovementSpeed * vector, Space.Self);
         transform.position = new Vector3(transform.position.x, y, transform.position.z);
     }
-}    
+}

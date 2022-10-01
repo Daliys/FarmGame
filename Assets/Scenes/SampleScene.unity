@@ -3410,7 +3410,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 1.68
+  near clip plane: 2.11
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -3463,6 +3463,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   cameraMovementSpeed: 5
+  cameraZoomSpeed: 3
+  borderOfCameraZoom: {x: 2, y: -2}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3475,8 +3477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4752d9cf0390f49a55639b78b8c3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedCursor: {fileID: 2800000, guid: 31638029c661c404da7d9e224bc86917, type: 3}
-  defaultCursor: {fileID: 2800000, guid: 59401ab0840dbd149a0557ee3b042548, type: 3}
+  cursorImages: {fileID: 11400000, guid: d785d09278f0dee4f9a45680d74027f3, type: 2}
 --- !u!1 &968463177
 GameObject:
   m_ObjectHideFlags: 0

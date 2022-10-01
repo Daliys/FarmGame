@@ -1,10 +1,10 @@
+using ScriptableObjects;
 using UnityEngine;
 
 public class CursorChanger : MonoBehaviour
 {
-    [SerializeField] private Texture2D seedCursor;
-    [SerializeField] private Texture2D defaultCursor;
-
+    [SerializeField] private CursorImages cursorImages;
+    
     /// <summary>
     /// Types of cursors that we have in the game
     /// </summary>
@@ -29,13 +29,13 @@ public class CursorChanger : MonoBehaviour
         switch (cursorType)
         {
             case CursorType.Default:
-                texture = defaultCursor;
+                texture = cursorImages.defaultCursor;
                 break;
             case CursorType.Seed:
-                texture = seedCursor;
+                texture = cursorImages.seedCursor;
                 break;
             default:
-                texture = defaultCursor;
+                texture = cursorImages.defaultCursor;
                 break;
         }
 
