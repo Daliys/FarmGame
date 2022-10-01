@@ -31,7 +31,7 @@ public class PurchaseProcessing : MonoBehaviour
         
         if (isSuccessful)
         {
-            garden.setSeed(_currentItem.seedInformation);
+            garden.SetSeed(_currentItem.seedInformation);
         }
         else
         {

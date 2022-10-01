@@ -5591,6 +5591,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 660073176, guid: a8b328438157d624690c18798fbf2243, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 963194227}
     - target: {fileID: 5105274779941911730, guid: a8b328438157d624690c18798fbf2243, type: 3}
       propertyPath: m_Name
       value: Garden
