@@ -81,6 +81,17 @@ public class TasksManager : MonoBehaviour
         }
     }
 
+    public void AddHarvestingAction(Garden garden)
+    {
+        if (playerNavMeshAgent)
+        {
+            Vector3 storeHousePosition = GameObject.FindGameObjectWithTag(Tags.StoreHouse).transform.position;
+            
+            HarvestingTask harvestingTask = new HarvestingTask(playerNavMeshAgent, garden, storeHousePosition, ActionWhenTaskFinished);
+            _taskList.Add(harvestingTask);
+        }
+    }
+
     public void AddMoveToPositionAction(Vector3 position)
     {
         if (playerNavMeshAgent)

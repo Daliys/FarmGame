@@ -60,9 +60,12 @@ namespace Tasks
                 _moveToGarden.OnStart();
                 _isMoveToWellFinish = true;
             }
-            ActionWhenTaskFinished.Invoke(false);
+            else
+            {
+                ActionWhenTaskFinished.Invoke(false);
+            }
         }
-        
+
         /// <summary>
         /// Action When NavMeshAgent came to Garden
         /// Starting Watering and finish this Task

@@ -1,4 +1,5 @@
 using System;
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,19 +8,23 @@ using UnityEngine.UI;
 /// </summary>
 public class GardenBalloon : MonoBehaviour
 {
-    [SerializeField] private UIBalloonImages uiBalloonImages; 
+    [SerializeField] private UIBalloonImages uiBalloonImages;
     [SerializeField] private Image icon;
     [SerializeField] private GameObject canvas;
 
     /// <summary>
+    /// Type of Icon to use for Button Image
+    /// </summary>
+    public enum IconType
+    {
+        Watering,
+        Harvesting
+    }
+
+    /// <summary>
     /// CallBack Action when Button clicked
     /// </summary>
-    private Action _onButtonClickedAction; 
-    
-    private void ChangeImageToWatering()
-    {
-        icon.sprite = uiBalloonImages.watering;
-    }
+    private Action _onButtonClickedAction;
 
     /// <summary>
     /// Calls when player clicking on the button to start Action
@@ -33,12 +38,18 @@ public class GardenBalloon : MonoBehaviour
     /// <summary>
     /// Showing UI Button with Watering Icon
     /// </summary>
+    /// <param name="iconType">Type of Icon that we need to show</param>
     /// <param name="onButtonClicked">CallBack action when button is clicked</param>
-    public void ShowWateringBalloon(Action onButtonClicked)
+    public void ShowBalloon(IconType iconType, Action onButtonClicked)
     {
         _onButtonClickedAction = onButtonClicked;
         canvas.SetActive(true);
-        ChangeImageToWatering();
-    }
 
+        icon.sprite = iconType switch
+        {
+            IconType.Watering => uiBalloonImages.watering,
+            IconType.Harvesting => uiBalloonImages.harvesting,
+            _ => icon.sprite
+        };
+    }
 }

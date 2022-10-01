@@ -3459,9 +3459,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraBorderWidthPercent: 0.025
   cameraBorderHeightPercent: 0.025
-  mouseLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
   cameraMovementSpeed: 5
   cameraZoomSpeed: 3
   borderOfCameraZoom: {x: 2, y: -2}
@@ -4545,8 +4542,8 @@ GameObject:
   - component: {fileID: 1355564901}
   - component: {fileID: 1355564900}
   m_Layer: 0
-  m_Name: vb
-  m_TagString: Untagged
+  m_Name: StoreHouse
+  m_TagString: StoreHouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

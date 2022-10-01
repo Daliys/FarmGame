@@ -1,3 +1,4 @@
+using System.Collections;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -12,13 +13,30 @@ public class Garden : MonoBehaviour
     /// Information about a planted plant
     /// </summary>
     private SeedInformation _seedInformation;
-   
+
+    /// <summary>
+    /// Stages of plant
+    /// </summary>
+    enum GardenStatus
+    {
+        Growing, Watering, Harvesting
+    }
+
+    private GardenStatus _currentStatus;
+
+    private GameObject _seedGameObject;
+    
+    /// <summary>
+    /// plan the seen on the garden
+    /// </summary>
+    /// <param name="seedInformation">Seed that we need to seed</param>
     public void SetSeed(SeedInformation seedInformation)
     {
         _seedInformation = seedInformation;
+        _currentStatus = GardenStatus.Growing;
         
-        GameObject seedGameObject = Instantiate(_seedInformation.prefab, transform, true);
-        seedGameObject.transform.localPosition = new Vector3(0, 1.5f, 0);
+        _seedGameObject = Instantiate(_seedInformation.prefab, transform, true);
+        _seedGameObject.transform.localPosition = new Vector3(0, 1.5f, 0);
         RequestWatering();
     }
 
@@ -27,7 +45,18 @@ public class Garden : MonoBehaviour
     /// </summary>
     private void RequestWatering()
     {
-        gardenBalloon.ShowWateringBalloon(OnButtonClicked);
+        _currentStatus = GardenStatus.Watering;
+        gardenBalloon.ShowBalloon(GardenBalloon.IconType.Watering, OnButtonClicked);
+    }
+    
+    /// <summary>
+    /// Showing Balloon that we need to harvest this garden
+    /// </summary>
+    private void RequestHarvesting()
+    {
+        _currentStatus = GardenStatus.Harvesting;
+        gardenBalloon.ShowBalloon(GardenBalloon.IconType.Harvesting, OnButtonClicked);
+        
     }
 
     /// <summary>
@@ -36,6 +65,20 @@ public class Garden : MonoBehaviour
     public void StartWatering()
     {
         // Doing some watering 
+
+        StartCoroutine(WaitBeforeHarvest());
+    }
+
+    /// <summary>
+    /// Action when NavMeshAgent Came to the Garden and starting Harvesting 
+    /// </summary>
+    public void StartHarvesting()
+    {
+        // Doing some harvesting 
+        
+        Destroy(_seedGameObject);
+        _seedInformation = null;
+
     }
 
     /// <summary>
@@ -43,7 +86,22 @@ public class Garden : MonoBehaviour
     /// </summary>
     private void OnButtonClicked()
     {
-        TasksManager.Instance.AddWateringAction(this);
+        switch (_currentStatus)
+        {
+            case GardenStatus.Watering:
+                TasksManager.Instance.AddWateringAction(this);
+                break;
+            case GardenStatus.Harvesting:
+                TasksManager.Instance.AddHarvestingAction(this);
+                break;
+        }
+    }
+
+    //FIXME Change this logic to something else
+    private IEnumerator WaitBeforeHarvest()
+    {
+        yield return new WaitForSeconds(3);
+        RequestHarvesting();
     }
     
     /// <summary>
