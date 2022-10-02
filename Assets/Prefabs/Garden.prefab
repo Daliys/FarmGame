@@ -129,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8369957200764827600, guid: 786af4ab37958e140973277185c43594, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.5
+      value: 8.7
       objectReference: {fileID: 0}
     - target: {fileID: 8369957200764827600, guid: 786af4ab37958e140973277185c43594, type: 3}
       propertyPath: m_LocalPosition.z
@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GardenIcon
       objectReference: {fileID: 0}
+    - target: {fileID: 8369957200764827601, guid: 786af4ab37958e140973277185c43594, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8369957200764827603, guid: 786af4ab37958e140973277185c43594, type: 3}
       propertyPath: canvas
       value: 
@@ -174,6 +178,22 @@ PrefabInstance:
     - target: {fileID: 8369957200962607008, guid: 786af4ab37958e140973277185c43594, type: 3}
       propertyPath: m_Camera
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369957200962607011, guid: 786af4ab37958e140973277185c43594, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.006
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369957200962607011, guid: 786af4ab37958e140973277185c43594, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.006
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369957200962607011, guid: 786af4ab37958e140973277185c43594, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.120000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369957200962607011, guid: 786af4ab37958e140973277185c43594, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.251
       objectReference: {fileID: 0}
     - target: {fileID: 8369957200962607012, guid: 786af4ab37958e140973277185c43594, type: 3}
       propertyPath: m_IsActive

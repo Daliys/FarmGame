@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48901cf693c7b074b949d188e7072ba1, type: 3}
   m_Name: UIBalloonImages
   m_EditorClassIdentifier: 
-  watering: {fileID: 21300000, guid: 77550bffb818aac45aa87f642db86892, type: 3}
+  watering: {fileID: 21300000, guid: e50deed3f7276ef48925887892014b02, type: 3}
   harvesting: {fileID: 21300000, guid: f37d0360db2d13a45a986ff580ffac47, type: 3}
