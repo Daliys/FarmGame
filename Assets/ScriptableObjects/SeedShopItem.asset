@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48edad306c871164d8b097676d73a3fc, type: 3}
   m_Name: SeedShopItem
   m_EditorClassIdentifier: 
-  seedInformationScriptableObject: {fileID: 11400000, guid: d7dae9537f0b6664b9158a4e462fc005, type: 2}
+  seedInformation: {fileID: 11400000, guid: d7dae9537f0b6664b9158a4e462fc005, type: 2}
   cost: 100
   itemName: Seed
   description: Just  a regular seed
