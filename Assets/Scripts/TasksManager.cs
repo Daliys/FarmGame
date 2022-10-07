@@ -11,6 +11,8 @@ public class TasksManager : MonoBehaviour
     
     [SerializeField]private NavMeshAgent playerNavMeshAgent;
 
+    [SerializeField] private Inventory inventory;
+
     public static TasksManager Instance;
    
     private void Awake()
@@ -85,9 +87,7 @@ public class TasksManager : MonoBehaviour
     {
         if (playerNavMeshAgent)
         {
-            Vector3 storeHousePosition = GameObject.FindGameObjectWithTag(Tags.StoreHouse).transform.position;
-            
-            HarvestingTask harvestingTask = new HarvestingTask(playerNavMeshAgent, garden, storeHousePosition, ActionWhenTaskFinished);
+            HarvestingTask harvestingTask = new HarvestingTask(playerNavMeshAgent, garden, inventory, ActionWhenTaskFinished);
             _taskList.Add(harvestingTask);
         }
     }

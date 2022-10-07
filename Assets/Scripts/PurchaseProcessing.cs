@@ -25,13 +25,13 @@ public class PurchaseProcessing : MonoBehaviour
 
         Garden garden = hit.collider.GetComponent<Garden>();
         
-        if (garden.IsHaveSeed) return false;
+        if (garden.IsHavePlant) return false;
 
         bool isSuccessful = Game.Instance.PurchaseItem(_currentItem.cost);
         
         if (isSuccessful)
         {
-            garden.SetSeed(_currentItem.seedInformation);
+            garden.SetSeed(_currentItem.plantInformation);
         }
         else
         {

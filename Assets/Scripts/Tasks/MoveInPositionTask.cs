@@ -33,7 +33,7 @@ namespace Tasks
 
         public override void Execute()
         {
-            if (_navMeshAgent.remainingDistance <= 1)
+            if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
             {
                 ActionWhenTaskFinished.Invoke(true);
             }

@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d71037fc59a59a64384257c3d48f6ed4, type: 3}
   m_Name: OneSeedInformation
   m_EditorClassIdentifier: 
-  grownStepTime: 6.2
   prefab: {fileID: 667674469719721315, guid: d7fc7ef875296dc4c8908055a2eb33fc, type: 3}
+  grownStepTime: 6.2
+  rarity: 0
+  marketPrice: 12

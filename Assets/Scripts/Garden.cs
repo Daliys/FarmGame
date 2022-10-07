@@ -1,6 +1,8 @@
 using System.Collections;
 using ScriptableObjects;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngineInternal;
 
 public class Garden : MonoBehaviour
 {
@@ -12,7 +14,7 @@ public class Garden : MonoBehaviour
     /// <summary>
     /// Information about a planted plant
     /// </summary>
-    private SeedInformation _seedInformation;
+    private PlantInformation _plantInformation;
 
     /// <summary>
     /// Stages of plant
@@ -29,13 +31,13 @@ public class Garden : MonoBehaviour
     /// <summary>
     /// plan the seen on the garden
     /// </summary>
-    /// <param name="seedInformation">Seed that we need to seed</param>
-    public void SetSeed(SeedInformation seedInformation)
+    /// <param name="plantInformation">Seed that we need to seed</param>
+    public void SetSeed(PlantInformation plantInformation)
     {
-        _seedInformation = seedInformation;
+        _plantInformation = plantInformation;
         _currentStatus = GardenStatus.Growing;
         
-        _seedGameObject = Instantiate(_seedInformation.prefab, transform, true);
+        _seedGameObject = Instantiate(_plantInformation.prefab, transform, true);
         _seedGameObject.transform.localPosition = new Vector3(0, 1.5f, 0);
         RequestWatering();
     }
@@ -72,13 +74,15 @@ public class Garden : MonoBehaviour
     /// <summary>
     /// Action when NavMeshAgent Came to the Garden and starting Harvesting 
     /// </summary>
-    public void StartHarvesting()
+    public InventoryItem StartHarvesting()
     {
         // Doing some harvesting 
+        InventoryItem inventoryItem = new InventoryItem(_plantInformation, Random.Range(1, 5));
         
         Destroy(_seedGameObject);
-        _seedInformation = null;
+        _plantInformation = null;
 
+        return inventoryItem;
     }
 
     /// <summary>
@@ -107,5 +111,5 @@ public class Garden : MonoBehaviour
     /// <summary>
     /// If this garden already have a plant
     /// </summary>
-    public bool IsHaveSeed => _seedInformation;
+    public bool IsHavePlant => _plantInformation;
 }

@@ -17,8 +17,8 @@ GameObject:
   m_Name: Garden
   m_TagString: Garden
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5105274779941911734
 Transform:
@@ -119,6 +119,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5105274779941911734}
     m_Modifications:
+    - target: {fileID: 8369957200728778832, guid: 786af4ab37958e140973277185c43594, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369957200728778832, guid: 786af4ab37958e140973277185c43594, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8369957200764827600, guid: 786af4ab37958e140973277185c43594, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -171,6 +179,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8369957200764827601, guid: 786af4ab37958e140973277185c43594, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369957200764827601, guid: 786af4ab37958e140973277185c43594, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8369957200764827603, guid: 786af4ab37958e140973277185c43594, type: 3}
       propertyPath: canvas
       value: 
@@ -198,6 +214,14 @@ PrefabInstance:
     - target: {fileID: 8369957200962607012, guid: 786af4ab37958e140973277185c43594, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369957200962607012, guid: 786af4ab37958e140973277185c43594, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369957200962607012, guid: 786af4ab37958e140973277185c43594, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 786af4ab37958e140973277185c43594, type: 3}

@@ -20,15 +20,23 @@ namespace Tasks
         /// </summary>
         private bool _isMoveToGardenFinish;
 
+        /// <summary>
+        /// Information about what we harvest (its what plank and amount of it)
+        /// </summary>
+        private InventoryItem _inventoryItem;
+        
+        //ref
         private readonly Garden _garden;
-
-        public HarvestingTask(NavMeshAgent navMeshAgent, Garden garden, Vector3 storeHousePosition,
+        private readonly Inventory _inventory;
+        
+        public HarvestingTask(NavMeshAgent navMeshAgent, Garden garden, Inventory inventory,
             Action<bool> actionWhenTaskFinished) : base(actionWhenTaskFinished)
         {
             _garden = garden;
+            _inventory = inventory;
             Vector3 gardenPosition = garden.transform.position;
             _moveToGarden = new MoveInPositionTask(navMeshAgent, gardenPosition, OnMovingToGardenTaskEnd);
-            _moveToStoreHouse = new MoveInPositionTask(navMeshAgent, storeHousePosition, OnMovingToStoreHouseTaskEnd);
+            _moveToStoreHouse = new MoveInPositionTask(navMeshAgent, inventory.GetStoreHouseLocation(), OnMovingToStoreHouseTaskEnd);
         }
 
         public override void OnStart()
@@ -55,8 +63,8 @@ namespace Tasks
         /// <param name="isFinishedSuccessful">Is the Moving task was successful?</param>
         private void OnMovingToStoreHouseTaskEnd(bool isFinishedSuccessful)
         {
+            if(_inventoryItem != null) _inventory.AddItem(_inventoryItem);
             
-            //_garden.StartWatering();
             ActionWhenTaskFinished.Invoke(isFinishedSuccessful);
           
         }
@@ -70,7 +78,7 @@ namespace Tasks
         {
             if (isFinishedSuccessful)
             {
-                _garden.StartHarvesting();
+                _inventoryItem = _garden.StartHarvesting();
                 _moveToStoreHouse.OnStart();
                 _isMoveToGardenFinish = true;
             }
