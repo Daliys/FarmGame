@@ -1,15 +1,29 @@
+using System;
 using System.Collections.Generic;
-using ScriptableObjects;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private GameObject storeHouseLocation;
     
-    private List<InventoryItem> _items;
     
+    public static Inventory Instance;
+    
+    public static event Action<List<InventoryItem>> OnInventoryChaned;
+
+    
+    private List<InventoryItem> _items;
+
     public void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
         _items = new List<InventoryItem>();
     }
 
@@ -24,16 +38,21 @@ public class Inventory : MonoBehaviour
             if (item.plantInformation.Equals(inventoryItem.plantInformation))
             {
                 item.amount += inventoryItem.amount;
+                OnInventoryChaned?.Invoke(_items);
                 return;
             }
         }
         
         _items.Add(inventoryItem);
         
-        print(inventoryItem.plantInformation + " " + inventoryItem.amount);
+        OnInventoryChaned?.Invoke(_items);
     }
-    
-    
+
+
+    public List<InventoryItem> GetItems()
+    {
+        return _items;
+    }
     
 
     /// <summary>

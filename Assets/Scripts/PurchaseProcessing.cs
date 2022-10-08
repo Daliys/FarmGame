@@ -1,12 +1,13 @@
+using ScriptableObjects;
 using UnityEngine;
 
 public class PurchaseProcessing : MonoBehaviour
 {
     [SerializeField] private MouseControl mouseControl;
-    private ShopItemScriptableObject _currentItem;
-    public void ProcessBuying(ShopItemScriptableObject item)
+    private PlantInformation _currentItem;
+    public void ProcessBuying(PlantInformation item)
     {
-        if (Game.Instance.IsEnoughMoneyToBuy(item.cost))
+        if (Game.Instance.IsEnoughMoneyToBuy(item.seedPrice))
         {
             _currentItem = item;
             //itemGameObject = Instantiate(item.prefab);
@@ -27,11 +28,11 @@ public class PurchaseProcessing : MonoBehaviour
         
         if (garden.IsHavePlant) return false;
 
-        bool isSuccessful = Game.Instance.PurchaseItem(_currentItem.cost);
+        bool isSuccessful = Game.Instance.PurchaseItem(_currentItem.seedPrice);
         
         if (isSuccessful)
         {
-            garden.SetSeed(_currentItem.plantInformation);
+            garden.SetSeed(_currentItem);
         }
         else
         {

@@ -18,5 +18,13 @@ namespace ScriptableObjects
         
         public int marketPrice;
 
+        public int seedPrice;
+
+        public string itemName;
+    
+        public string description;
+
+        public Sprite uiSprite;
+
     }
 }

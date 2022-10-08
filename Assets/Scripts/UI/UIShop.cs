@@ -1,3 +1,4 @@
+using ScriptableObjects;
 using UnityEngine;
 
 public class UIShop : MonoBehaviour
@@ -7,7 +8,7 @@ public class UIShop : MonoBehaviour
     /**
      * Processing buying item
      */
-    public void OnButtonBuyClicked(ShopItemScriptableObject item)
+    public void OnButtonBuyClicked(PlantInformation item)
     {
         purchaseProcessing.ProcessBuying(item);
     }
