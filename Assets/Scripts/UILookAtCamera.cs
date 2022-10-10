@@ -18,5 +18,6 @@ public class UILookAtCamera : MonoBehaviour
         var rotation = _mainCamera.transform.rotation;
         transform.LookAt(transform.position + rotation * Vector3.back,
             rotation * Vector3.up);
+        
     }
 }

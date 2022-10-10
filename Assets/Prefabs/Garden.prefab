@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5105274779941911728}
   - component: {fileID: 5105274779941911731}
   - component: {fileID: 1516293435941763923}
+  - component: {fileID: 628858884}
   m_Layer: 0
   m_Name: Garden
   m_TagString: Garden
@@ -31,8 +32,7 @@ Transform:
   m_LocalPosition: {x: -0.5, y: 0.0625, z: -3.5}
   m_LocalScale: {x: 1, y: 0.125, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 989973160}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -111,138 +111,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921a24a709e2d664ea33db7e0ef5011c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gardenBalloon: {fileID: 989973163}
---- !u!1001 &8369957200412458360
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 5105274779941911734}
-    m_Modifications:
-    - target: {fileID: 8369957200728778832, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200728778832, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200764827600, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200764827600, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200764827600, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200764827600, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200764827600, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200764827600, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200764827600, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200764827600, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200764827600, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200764827600, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200764827600, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200764827601, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_Name
-      value: GardenIcon
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200764827601, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200764827601, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200764827601, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200764827603, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 660073180}
-    - target: {fileID: 8369957200962607008, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200962607011, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.006
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200962607011, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.006
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200962607011, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.120000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200962607011, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.251
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200962607012, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200962607012, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369957200962607012, guid: 786af4ab37958e140973277185c43594, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 786af4ab37958e140973277185c43594, type: 3}
---- !u!1 &660073180 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8369957200962607012, guid: 786af4ab37958e140973277185c43594, type: 3}
-  m_PrefabInstance: {fileID: 8369957200412458360}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &989973160 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8369957200764827600, guid: 786af4ab37958e140973277185c43594, type: 3}
-  m_PrefabInstance: {fileID: 8369957200412458360}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &989973163 stripped
+  gardenBalloon: {fileID: 628858884}
+--- !u!114 &628858884
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8369957200764827603, guid: 786af4ab37958e140973277185c43594, type: 3}
-  m_PrefabInstance: {fileID: 8369957200412458360}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5105274779941911730}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51b2494dcd1f4b14489cb04d11d2221f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiBalloonImages: {fileID: 11400000, guid: 0779c3aa79c95d847a3de8098c93336d, type: 2}
+  uiPrefab: {fileID: 297102786891935712, guid: bf631a4d68e961e43bfa3923d2816302, type: 3}

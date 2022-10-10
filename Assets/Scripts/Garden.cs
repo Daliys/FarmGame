@@ -1,8 +1,6 @@
 using System.Collections;
 using ScriptableObjects;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngineInternal;
 
 public class Garden : MonoBehaviour
 {
@@ -93,10 +91,10 @@ public class Garden : MonoBehaviour
         switch (_currentStatus)
         {
             case GardenStatus.Watering:
-                TasksManager.Instance.AddWateringAction(this);
+                GameReferences.Instance.TasksManager.AddWateringAction(this);
                 break;
             case GardenStatus.Harvesting:
-                TasksManager.Instance.AddHarvestingAction(this);
+                GameReferences.Instance.TasksManager.AddHarvestingAction(this);
                 break;
         }
     }

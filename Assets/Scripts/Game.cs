@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-    public static Game Instance;
-
     /**
      * Action calls when amount of money changing
      */
@@ -12,14 +10,6 @@ public class Game : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
         OnMoneyChanged?.Invoke(money);
     }
 

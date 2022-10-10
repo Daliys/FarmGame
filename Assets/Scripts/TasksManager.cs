@@ -12,20 +12,10 @@ public class TasksManager : MonoBehaviour
     [SerializeField]private NavMeshAgent playerNavMeshAgent;
 
     [SerializeField] private Inventory inventory;
-
-    public static TasksManager Instance;
+    
    
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-        
         _taskList = new List<BaseTask>();
     }
 

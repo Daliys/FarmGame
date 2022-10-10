@@ -7,5 +7,7 @@ namespace ScriptableObjects
     {
         public Texture2D seedCursor;
         public Texture2D defaultCursor;
+        public Texture2D waterCanCursor;
+        public Texture2D harvestCursor;
     }
 }

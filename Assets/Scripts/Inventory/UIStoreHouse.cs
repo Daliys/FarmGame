@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,7 +46,7 @@ public class UIStoreHouse : MonoBehaviour
     private void OnEnable()
     {
         Inventory.OnInventoryChaned += UpdateInventoryUI;
-        UpdateInventoryUI(Inventory.Instance.GetItems());
+        UpdateInventoryUI(GameReferences.Instance.Inventory.GetItems());
     }
 
     private void OnDisable()

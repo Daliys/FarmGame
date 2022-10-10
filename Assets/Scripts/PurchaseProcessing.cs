@@ -7,7 +7,7 @@ public class PurchaseProcessing : MonoBehaviour
     private PlantInformation _currentItem;
     public void ProcessBuying(PlantInformation item)
     {
-        if (Game.Instance.IsEnoughMoneyToBuy(item.seedPrice))
+        if (GameReferences.Instance.Game.IsEnoughMoneyToBuy(item.seedPrice))
         {
             _currentItem = item;
             //itemGameObject = Instantiate(item.prefab);
@@ -28,7 +28,7 @@ public class PurchaseProcessing : MonoBehaviour
         
         if (garden.IsHavePlant) return false;
 
-        bool isSuccessful = Game.Instance.PurchaseItem(_currentItem.seedPrice);
+        bool isSuccessful = GameReferences.Instance.Game.PurchaseItem(_currentItem.seedPrice);
         
         if (isSuccessful)
         {

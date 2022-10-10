@@ -7,8 +7,6 @@ public class Inventory : MonoBehaviour
     [SerializeField] private GameObject storeHouseLocation;
     
     
-    public static Inventory Instance;
-    
     public static event Action<List<InventoryItem>> OnInventoryChaned;
 
     
@@ -16,14 +14,7 @@ public class Inventory : MonoBehaviour
 
     public void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
+  
         _items = new List<InventoryItem>();
     }
 

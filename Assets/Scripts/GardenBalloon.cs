@@ -9,8 +9,17 @@ using UnityEngine.UI;
 public class GardenBalloon : MonoBehaviour
 {
     [SerializeField] private UIBalloonImages uiBalloonImages;
-    [SerializeField] private Image icon;
-    [SerializeField] private GameObject canvas;
+    [SerializeField] private GameObject uiPrefab;
+    private GameObject _canvas;
+    private GameObject _uiGameObject;
+    private Camera _mainCamera;
+
+
+    private void Start()
+    {
+        _canvas = GameReferences.Instance.WorldObjectsCanvas;
+        _mainCamera = Camera.main;
+    }
 
     /// <summary>
     /// Type of Icon to use for Button Image
@@ -32,7 +41,7 @@ public class GardenBalloon : MonoBehaviour
     public void OnButtonClicked()
     {
         _onButtonClickedAction?.Invoke();
-        canvas.SetActive(false);
+        Destroy(_uiGameObject);
     }
 
     /// <summary>
@@ -43,13 +52,24 @@ public class GardenBalloon : MonoBehaviour
     public void ShowBalloon(IconType iconType, Action onButtonClicked)
     {
         _onButtonClickedAction = onButtonClicked;
-        canvas.SetActive(true);
+        _canvas.SetActive(true);
 
-        icon.sprite = iconType switch
+        _uiGameObject = Instantiate(uiPrefab, _canvas.transform);
+        _uiGameObject.GetComponent<Image>().sprite = iconType switch
         {
             IconType.Watering => uiBalloonImages.watering,
             IconType.Harvesting => uiBalloonImages.harvesting,
-            _ => icon.sprite
         };
+
+        _uiGameObject.GetComponent<Button>().onClick.AddListener(OnButtonClicked);
     }
+    
+    private void LateUpdate()
+    {
+        if (_uiGameObject)
+        {
+            _uiGameObject.transform.position = _mainCamera.WorldToScreenPoint(transform.position);
+        }
+    }
+
 }
