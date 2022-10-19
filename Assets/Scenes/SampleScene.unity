@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657952, g: 0.49641454, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657934, g: 0.4964146, b: 0.5748158, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7704,6 +7704,7 @@ GameObject:
   - component: {fileID: 1886398922}
   - component: {fileID: 1886398923}
   - component: {fileID: 1886398924}
+  - component: {fileID: 1886398925}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -7795,6 +7796,22 @@ MonoBehaviour:
   tasksManager: {fileID: 1886398922}
   inventory: {fileID: 1886398923}
   worldObjectsCanvas: {fileID: 1761893749}
+--- !u!114 &1886398925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886398918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1b483f867b7fc84186a3342633b7077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directionalLight: {fileID: 705507994}
+  lightPreset: {fileID: 11400000, guid: 49c3d6efa5ae06a4891bb52e1d7ab94c, type: 2}
+  timeOfDay: 0
+  daySpeed: 2
 --- !u!1 &1933900704
 GameObject:
   m_ObjectHideFlags: 0
