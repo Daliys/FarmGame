@@ -58,6 +58,7 @@ public class TasksManager : MonoBehaviour
     {
         if (hit.collider.CompareTag(Tags.Ground))
         {
+            print(hit.point );
             AddMoveToPositionAction(hit.point);   
         }
     }

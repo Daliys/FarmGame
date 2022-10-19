@@ -179,8 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiBalloonImages: {fileID: 11400000, guid: 0779c3aa79c95d847a3de8098c93336d, type: 2}
-  icon: {fileID: 8369957200728778845}
-  canvas: {fileID: 8369957200962607008}
+  uiPrefab: {fileID: 0}
 --- !u!1 &8369957200962607012
 GameObject:
   m_ObjectHideFlags: 0

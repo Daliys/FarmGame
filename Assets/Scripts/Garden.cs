@@ -1,6 +1,11 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Security.Cryptography;
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class Garden : MonoBehaviour
 {
@@ -9,10 +14,13 @@ public class Garden : MonoBehaviour
     /// </summary>
     [SerializeField]private GardenBalloon gardenBalloon;
 
+    [FormerlySerializedAs("pointForSeed")] [SerializeField] private List<Transform> pointsForSeed;
+
     /// <summary>
     /// Information about a planted plant
     /// </summary>
     private PlantInformation _plantInformation;
+    
 
     /// <summary>
     /// Stages of plant
@@ -24,8 +32,14 @@ public class Garden : MonoBehaviour
 
     private GardenStatus _currentStatus;
 
-    private GameObject _seedGameObject;
-    
+    private List<GameObject> _plantGameObjects;
+
+
+    private void Awake()
+    {
+        _plantGameObjects = new List<GameObject>();
+    }
+
     /// <summary>
     /// plan the seen on the garden
     /// </summary>
@@ -34,9 +48,15 @@ public class Garden : MonoBehaviour
     {
         _plantInformation = plantInformation;
         _currentStatus = GardenStatus.Growing;
+
+       
+        for (int i = 0; i < pointsForSeed.Count; i++)
+        {
+            GameObject gm = Instantiate(_plantInformation.prefab, transform);
+            gm.transform.position = pointsForSeed[i].position;
+            _plantGameObjects.Add(gm);
+        }
         
-        _seedGameObject = Instantiate(_plantInformation.prefab, transform, true);
-        _seedGameObject.transform.localPosition = new Vector3(0, 1.5f, 0);
         RequestWatering();
     }
 
@@ -76,8 +96,13 @@ public class Garden : MonoBehaviour
     {
         // Doing some harvesting 
         InventoryItem inventoryItem = new InventoryItem(_plantInformation, Random.Range(1, 5));
+
+        foreach (var plant in _plantGameObjects)
+        {
+            Destroy(plant);
+        }
+        _plantGameObjects.Clear();
         
-        Destroy(_seedGameObject);
         _plantInformation = null;
 
         return inventoryItem;

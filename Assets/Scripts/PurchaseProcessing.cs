@@ -24,7 +24,7 @@ public class PurchaseProcessing : MonoBehaviour
     {
         if (!hit.collider.CompareTag(Tags.Garden)) return false;
 
-        Garden garden = hit.collider.GetComponent<Garden>();
+        Garden garden = hit.collider.gameObject.GetComponentInParent<Garden>();
         
         if (garden.IsHavePlant) return false;
 
