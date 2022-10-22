@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Inventories;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -92,10 +93,12 @@ public class Garden : MonoBehaviour
     /// <summary>
     /// Action when NavMeshAgent Came to the Garden and starting Harvesting 
     /// </summary>
-    public InventoryItem StartHarvesting()
+    public void StartHarvesting(PlayerInventory inventoryToAdd)
     {
+        if(inventoryToAdd.IsInventoryFull()) return;
+
         // Doing some harvesting 
-        InventoryItem inventoryItem = new InventoryItem(_plantInformation, Random.Range(1, 5));
+        InventoryItem inventoryItem = new InventoryItem(_plantInformation, 1);
 
         foreach (var plant in _plantGameObjects)
         {
@@ -105,7 +108,7 @@ public class Garden : MonoBehaviour
         
         _plantInformation = null;
 
-        return inventoryItem;
+        inventoryToAdd.AddItem(inventoryItem);
     }
 
     /// <summary>
@@ -116,10 +119,10 @@ public class Garden : MonoBehaviour
         switch (_currentStatus)
         {
             case GardenStatus.Watering:
-                GameReferences.Instance.TasksManager.AddWateringAction(this);
+                REF.Instance.TasksManager.AddWateringAction(this);
                 break;
             case GardenStatus.Harvesting:
-                GameReferences.Instance.TasksManager.AddHarvestingAction(this);
+                REF.Instance.TasksManager.AddHarvestingAction(this);
                 break;
         }
     }

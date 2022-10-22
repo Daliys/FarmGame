@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Inventories;
 using UnityEngine;
 
 public class UIStoreHouse : MonoBehaviour
@@ -11,7 +12,7 @@ public class UIStoreHouse : MonoBehaviour
 
     private void Awake()
     {
-        Inventory.OnInventoryChaned += UpdateInventoryUI;
+        REF.Instance.StoreHouseInventory.OnInventoryChanged += UpdateInventoryUI;
         uiItems = new List<UIInventoryItem>();
     }
 
@@ -45,12 +46,12 @@ public class UIStoreHouse : MonoBehaviour
 
     private void OnEnable()
     {
-        Inventory.OnInventoryChaned += UpdateInventoryUI;
-        UpdateInventoryUI(GameReferences.Instance.Inventory.GetItems());
+        REF.Instance.StoreHouseInventory.OnInventoryChanged += UpdateInventoryUI;
+        UpdateInventoryUI(REF.Instance.StoreHouseInventory.GetItems());
     }
 
     private void OnDisable()
     {
-        Inventory.OnInventoryChaned -= UpdateInventoryUI;
+        REF.Instance.StoreHouseInventory.OnInventoryChanged -= UpdateInventoryUI;
     }
 }

@@ -1,13 +1,15 @@
+using Inventories;
 using UnityEngine;
 
-public class GameReferences : MonoBehaviour
+public class REF : MonoBehaviour
 {
-   public static GameReferences Instance;
+   public static REF Instance;
  
    
    [SerializeField] private Game game;
    [SerializeField] private TasksManager tasksManager;
-   [SerializeField] private Inventory inventory;
+   [SerializeField] private PlayerInventory playerInventory;
+   [SerializeField] private StoreHouseInventory storeHouseInventory;
    
    [SerializeField] private GameObject worldObjectsCanvas;
 
@@ -33,7 +35,9 @@ public class GameReferences : MonoBehaviour
 
    public TasksManager TasksManager => tasksManager;
 
-   public Inventory Inventory => inventory;
+   public PlayerInventory PlayerInventory => playerInventory;
+
+   public StoreHouseInventory StoreHouseInventory => storeHouseInventory;
 
    public GameObject WorldObjectsCanvas => worldObjectsCanvas;
 

@@ -17,7 +17,7 @@ public class GardenBalloon : MonoBehaviour
 
     private void Start()
     {
-        _canvas = GameReferences.Instance.WorldObjectsCanvas;
+        _canvas = REF.Instance.WorldObjectsCanvas;
         _mainCamera = Camera.main;
     }
 

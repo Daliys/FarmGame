@@ -1,19 +1,20 @@
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PurchaseProcessing : MonoBehaviour
 {
-    [SerializeField] private MouseControl mouseControl;
+    [FormerlySerializedAs("mouseControl")] [SerializeField] private InputController inputController;
     private PlantInformation _currentItem;
     public void ProcessBuying(PlantInformation item)
     {
-        if (GameReferences.Instance.Game.IsEnoughMoneyToBuy(item.seedPrice))
+        if (REF.Instance.Game.IsEnoughMoneyToBuy(item.seedPrice))
         {
             _currentItem = item;
             //itemGameObject = Instantiate(item.prefab);
             //gameObject.name = item.itemName;
             
-            mouseControl.AddFollowingMouseItem(PurchaseItem);
+            inputController.AddFollowingMouseItem(PurchaseItem);
         }
     }
 
@@ -28,7 +29,7 @@ public class PurchaseProcessing : MonoBehaviour
         
         if (garden.IsHavePlant) return false;
 
-        bool isSuccessful = GameReferences.Instance.Game.PurchaseItem(_currentItem.seedPrice);
+        bool isSuccessful = REF.Instance.Game.PurchaseItem(_currentItem.seedPrice);
         
         if (isSuccessful)
         {

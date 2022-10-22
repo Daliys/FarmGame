@@ -13,6 +13,8 @@ public class UI : MonoBehaviour
     
     [SerializeField] private GameObject storeHousePanel;
 
+
+    
     private void OnEnable()
     {
         Game.OnMoneyChanged += OnAmountOfMoneyChanged;

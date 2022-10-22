@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MouseControl : MonoBehaviour
+public class InputController : MonoBehaviour
 {
     /**
      * percent of window size in width, during pointing in this area the camera will move 
@@ -13,6 +13,11 @@ public class MouseControl : MonoBehaviour
      * percent of window size in height, during pointing in this area the camera will move
      */
     [SerializeField] private float cameraBorderHeightPercent;
+
+    /// <summary>
+    /// If it is true then move camera by mouse wont be available
+    /// </summary>
+    [SerializeField] private bool lockMouseMovement;
     
     /**
      * Reference to Camera <see cref="Camera"/>
@@ -88,7 +93,9 @@ public class MouseControl : MonoBehaviour
             }
         }
 
-        CheckAndMoveCamera();
+        if(!lockMouseMovement) CheckAndMoveCameraByMouse();
+
+        CheckAndMoveCameraByKeyboard();
     }
 
     /// <summary>
@@ -152,7 +159,7 @@ public class MouseControl : MonoBehaviour
     /**
      * Camera movement while cursor in the border area
      */
-    private void CheckAndMoveCamera()
+    private void CheckAndMoveCameraByMouse()
     {
         _mousePosition = Input.mousePosition;
         float mousePercentX = _mousePosition.x / _windowSize.x;
@@ -176,6 +183,25 @@ public class MouseControl : MonoBehaviour
             MoveCamera(Vector3.forward);
         }
     }
+    
+    /**
+     * Camera movement is player using keybord movements
+     */
+    private void CheckAndMoveCameraByKeyboard()
+    {
+
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            horizontal *= 2;
+            vertical *= 2;
+        }
+        
+        MoveCamera(new Vector3(horizontal,0,vertical));
+    }
+
 
     /// <summary>
     /// Moving camera in the specified direction

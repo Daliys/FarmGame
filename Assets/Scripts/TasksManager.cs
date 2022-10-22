@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Inventories;
 using Tasks;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,8 +11,6 @@ public class TasksManager : MonoBehaviour
     private BaseTask _currentTask;
     
     [SerializeField]private NavMeshAgent playerNavMeshAgent;
-
-    [SerializeField] private Inventory inventory;
     
    
     private void Awake()
@@ -58,7 +57,6 @@ public class TasksManager : MonoBehaviour
     {
         if (hit.collider.CompareTag(Tags.Ground))
         {
-            print(hit.point );
             AddMoveToPositionAction(hit.point);   
         }
     }
@@ -78,7 +76,7 @@ public class TasksManager : MonoBehaviour
     {
         if (playerNavMeshAgent)
         {
-            HarvestingTask harvestingTask = new HarvestingTask(playerNavMeshAgent, garden, inventory, ActionWhenTaskFinished);
+            HarvestingTask harvestingTask = new HarvestingTask(playerNavMeshAgent, garden, REF.Instance.PlayerInventory, ActionWhenTaskFinished);
             _taskList.Add(harvestingTask);
         }
     }
@@ -94,12 +92,12 @@ public class TasksManager : MonoBehaviour
 
     private void OnEnable()
     {
-        MouseControl.OnMouseButtonClicked += MouseControlOnOnMouseButtonClicked;
+        InputController.OnMouseButtonClicked += MouseControlOnOnMouseButtonClicked;
     }
 
     private void OnDisable()
     {
-        MouseControl.OnMouseButtonClicked -= MouseControlOnOnMouseButtonClicked;
+        InputController.OnMouseButtonClicked -= MouseControlOnOnMouseButtonClicked;
     }
 
 }

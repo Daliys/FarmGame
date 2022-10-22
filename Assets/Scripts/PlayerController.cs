@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private Animator animator;
 
     private const string IsMoving = "IsMoving";
+    private const string IsInteracting = "IsInteracting";
     
     private void Awake()
     {
