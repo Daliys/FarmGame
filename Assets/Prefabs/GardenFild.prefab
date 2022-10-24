@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2840696865220124584}
   - component: {fileID: 2840696865220124585}
   - component: {fileID: 2840696865220124502}
+  - component: {fileID: 1489453737}
   m_Layer: 0
   m_Name: GardenFild
   m_TagString: Garden
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2840696865220124503}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.819, y: 0, z: -6.6075783}
+  m_LocalPosition: {x: -27.907116, y: 0, z: 28.170368}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -64,6 +65,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiBalloonImages: {fileID: 11400000, guid: 0779c3aa79c95d847a3de8098c93336d, type: 2}
   uiPrefab: {fileID: 297102786891935712, guid: bf631a4d68e961e43bfa3923d2816302, type: 3}
+--- !u!114 &1489453737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2840696865220124503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6668796c3c3493783ae5044d67acb00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  objectCollider: {fileID: 2840696866242469962}
+  defaultMaterial: {fileID: 2100000, guid: 117944a22a1d76441b4132b1ec2d9e57, type: 2}
+  notAvailableMaterial: {fileID: 2100000, guid: 0d7f703b4c925194ebe60aab2b07ae94, type: 2}
+  meshRenderer: {fileID: 2840696866242469965}
 --- !u!1 &2840696866242469963
 GameObject:
   m_ObjectHideFlags: 0

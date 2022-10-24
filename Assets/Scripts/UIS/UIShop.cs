@@ -8,8 +8,9 @@ public class UIShop : MonoBehaviour
     /**
      * Processing buying item
      */
-    public void OnButtonBuyClicked(PlantInformation item)
+    public void OnButtonBuyClicked(ObjectInformation item)
     {
         purchaseProcessing.ProcessBuying(item);
     }
+ 
 }

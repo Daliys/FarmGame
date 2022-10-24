@@ -10,7 +10,7 @@ namespace UIS
         
 
         private void OnInventoryChanged(List<InventoryItem> inventoryItems)
-        {        print("Changed");
+        {     
             for (int i = 0, j = inventoryItems.Count; i < indicators.Length; i++)
             {
                 if(i < j) indicators[i].ChangeToFull();

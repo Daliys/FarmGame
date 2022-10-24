@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: OnePlantInformation 1
   m_EditorClassIdentifier: 
   prefab: {fileID: 667674469719721315, guid: d7fc7ef875296dc4c8908055a2eb33fc, type: 3}
-  grownStepTime: 6.2
-  rarity: 0
-  marketPrice: 12
-  seedPrice: 50
+  price: 75
   itemName: Blue Flower
   description: It's a magical but common flower
   uiSprite: {fileID: 21300000, guid: f46605327b142de48992dc3bad16ab35, type: 3}
+  grownStepTime: 6.2
+  rarity: 0
+  marketPrice: 12

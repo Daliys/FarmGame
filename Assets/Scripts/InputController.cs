@@ -1,6 +1,8 @@
 using System;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Utils;
 
 public class InputController : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class InputController : MonoBehaviour
     /// If it is true then move camera by mouse wont be available
     /// </summary>
     [SerializeField] private bool lockMouseMovement;
+    
+    [SerializeField] private LayerMask layerMask;
     
     /**
      * Reference to Camera <see cref="Camera"/>
@@ -65,8 +69,14 @@ public class InputController : MonoBehaviour
      */
     private Func<RaycastHit, bool> _actionForBuyingItems;
 
+    /// <summary>
+    /// Ref to CursorChanger
+    /// </summary>
     private CursorChanger _cursorChanger;
 
+    private GameObject _followingGameObject;
+
+    private bool isAvailableToPlace;
 
     void Start()
     {
@@ -93,6 +103,8 @@ public class InputController : MonoBehaviour
             }
         }
 
+        OnMouseChangedPosition();
+
         if(!lockMouseMovement) CheckAndMoveCameraByMouse();
 
         CheckAndMoveCameraByKeyboard();
@@ -109,9 +121,15 @@ public class InputController : MonoBehaviour
         {
             if (_actionForBuyingItems != null)
             {
-                if (_actionForBuyingItems.Invoke(hit))
+                if (_actionForBuyingItems.Invoke(hit) && isAvailableToPlace)
                 {
+                    if (_followingGameObject != null)
+                    {
+                        _followingGameObject.GetComponent<OverlapChecker>().ChangeMaterialAvailable(true);
+                    }
+
                     _actionForBuyingItems = null;
+                    _followingGameObject = null;
                     _cursorChanger.ChangeCursor(CursorChanger.CursorType.Default);
                 }
             }
@@ -140,20 +158,35 @@ public class InputController : MonoBehaviour
 
     private void OnMouseChangedPosition()
     {
-        if (_actionForBuyingItems != null) return;
+        if (_followingGameObject == null) return;
 
         var ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out var hit))
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity, layerMask))
         {
+            Vector3 newPosition = MathUtil.RoundTo(raycastHit.point, 0.5f);
+            _followingGameObject.transform.position = newPosition;
 
+            OverlapChecker overlapChecker = _followingGameObject.GetComponent<OverlapChecker>();
+
+            isAvailableToPlace = overlapChecker.CanSpawnInLocation(newPosition);
+            overlapChecker.ChangeMaterialAvailable(isAvailableToPlace);
         }
+
     }
+
+
 
     public void AddFollowingMouseItem(Func<RaycastHit, bool> actionAfterMouseClick)
     {
         _actionForBuyingItems = actionAfterMouseClick;
         _cursorChanger.ChangeCursor(CursorChanger.CursorType.Seed);
+    }
+    
+    public void AddFollowingMouseItem(Func<RaycastHit, bool> actionAfterMouseClick, GameObject followingObject)
+    {
+        _actionForBuyingItems = actionAfterMouseClick;
+        _followingGameObject = followingObject;
     }
 
     /**
