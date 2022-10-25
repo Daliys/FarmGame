@@ -16,4 +16,4 @@ MonoBehaviour:
   price: 80
   itemName: Garden Bleat
   description: For making money
-  uiSprite: {fileID: 0}
+  uiSprite: {fileID: 21300000, guid: 9ed990ef41c0f794e8ae480f937d5c7c, type: 3}
