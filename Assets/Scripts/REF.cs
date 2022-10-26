@@ -11,7 +11,8 @@ public class REF : MonoBehaviour
    [SerializeField] private PlayerInventory playerInventory;
    [SerializeField] private StoreHouseInventory storeHouseInventory;
    [SerializeField] private PurchaseProcessing purchaseProcessing;
-   
+   [SerializeField] private UI ui;
+
    [SerializeField] private GameObject worldObjectsCanvas;
 
    
@@ -43,5 +44,6 @@ public class REF : MonoBehaviour
    public GameObject WorldObjectsCanvas => worldObjectsCanvas;
 
    public PurchaseProcessing PurchaseProcessing => purchaseProcessing;
-
+   
+   public UI UI => ui;
 }

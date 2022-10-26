@@ -62,6 +62,19 @@ public class UI : MonoBehaviour
         amountOfMoneyText.text = currentAmount.ToString();
     }
 
+    public bool IsAnyPanelOpen()
+    {
+        return shopPanel.activeSelf ||
+               storeHousePanel.activeSelf ||
+               pausePanel.activeSelf;
+    }
 
+    public void CloseAllPanels()
+    {
+        shopPanel.SetActive(false);
+        storeHousePanel.SetActive(false);
+        pausePanel.SetActive(false);
+        dayPanel.SetActive(true);
+    }
 
 }

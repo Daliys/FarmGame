@@ -95,13 +95,7 @@ public class InputController : MonoBehaviour
 
         MouseZooming();
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                OnMouseClicked();
-            }
-        }
+        CheckMouseButtonClicked();
 
         OnMouseChangedPosition();
 
@@ -110,6 +104,22 @@ public class InputController : MonoBehaviour
         CheckAndMoveCameraByKeyboard();
     }
 
+    private void CheckMouseButtonClicked()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                OnMouseClicked();
+            }
+        }
+        else if (Input.GetMouseButton(1))
+        {
+            if(REF.Instance.UI.IsAnyPanelOpen()) REF.Instance.UI.CloseAllPanels();
+            // else cancel last action
+        }
+    }
+    
     /// <summary>
     /// Processing mouse clicked 
     /// </summary>
