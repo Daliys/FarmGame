@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Inventories;
 using Tasks;
 using UnityEngine;
 using UnityEngine.AI;
@@ -90,14 +89,21 @@ public class TasksManager : MonoBehaviour
         }
     }
 
+    public void CancelAllTask()
+    {
+        _taskList.Clear();
+        _currentTask = null;
+        playerNavMeshAgent.SetDestination(playerNavMeshAgent.transform.position);
+    }
+
     private void OnEnable()
     {
-        InputController.OnMouseButtonClicked += MouseControlOnOnMouseButtonClicked;
+        InputManagerController.OnMouseButtonClicked += MouseControlOnOnMouseButtonClicked;
     }
 
     private void OnDisable()
     {
-        InputController.OnMouseButtonClicked -= MouseControlOnOnMouseButtonClicked;
+        InputManagerController.OnMouseButtonClicked -= MouseControlOnOnMouseButtonClicked;
     }
 
 }

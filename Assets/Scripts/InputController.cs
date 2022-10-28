@@ -1,8 +1,5 @@
 using System;
-using DefaultNamespace;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using Utils;
 
 public class InputController : MonoBehaviour
 {
@@ -20,18 +17,6 @@ public class InputController : MonoBehaviour
     /// If it is true then move camera by mouse wont be available
     /// </summary>
     [SerializeField] private bool lockMouseMovement;
-    
-    [SerializeField] private LayerMask layerMask;
-    
-    /**
-     * Reference to Camera <see cref="Camera"/>
-     */
-    private Camera _mainCamera;
-
-    /**
-     * Action, mouse is clicked 
-     */
-    public static event Action<RaycastHit> OnMouseButtonClicked;
 
     /**
      * Local variable of mouse position 
@@ -64,30 +49,13 @@ public class InputController : MonoBehaviour
     /// </summary>
     private float _currentZoom;
 
-    /**
-     * Action of buying item from shop. It's invoke after mouseClicked
-     */
-    private Func<RaycastHit, bool> _actionForBuyingItems;
-
-    /// <summary>
-    /// Ref to CursorChanger
-    /// </summary>
-    private CursorChanger _cursorChanger;
-
-    private GameObject _followingGameObject;
-
-    private bool isAvailableToPlace;
-
-    void Start()
+    private void Start()
     {
-        _mainCamera = GetComponent<Camera>();
         _windowSize = new Vector2(Screen.width, Screen.height);
-        _cursorChanger = GetComponent<CursorChanger>();
         _currentZoom = 0;
     }
 
     // Update is called once per frame
-
     void Update()
     {
         //FIXME remove not using method
@@ -95,59 +63,9 @@ public class InputController : MonoBehaviour
 
         MouseZooming();
 
-        CheckMouseButtonClicked();
-
-        OnMouseChangedPosition();
-
-        if(!lockMouseMovement) CheckAndMoveCameraByMouse();
+        if (!lockMouseMovement) CheckAndMoveCameraByMouse();
 
         CheckAndMoveCameraByKeyboard();
-    }
-
-    private void CheckMouseButtonClicked()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                OnMouseClicked();
-            }
-        }
-        else if (Input.GetMouseButton(1))
-        {
-            if(REF.Instance.UI.IsAnyPanelOpen()) REF.Instance.UI.CloseAllPanels();
-            // else cancel last action
-        }
-    }
-    
-    /// <summary>
-    /// Processing mouse clicked 
-    /// </summary>
-    private void OnMouseClicked()
-    {
-        var ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out var hit))
-        {
-            if (_actionForBuyingItems != null)
-            {
-                if (_actionForBuyingItems.Invoke(hit) && isAvailableToPlace)
-                {
-                    if (_followingGameObject != null)
-                    {
-                        _followingGameObject.GetComponent<OverlapChecker>().ChangeMaterialAvailable(true);
-                    }
-
-                    _actionForBuyingItems = null;
-                    _followingGameObject = null;
-                    _cursorChanger.ChangeCursor(CursorChanger.CursorType.Default);
-                }
-            }
-            else
-            {
-                OnMouseButtonClicked?.Invoke(hit);
-            }
-        }
     }
 
     /// <summary>
@@ -164,39 +82,6 @@ public class InputController : MonoBehaviour
                 transform.Translate(mouseWheels * cameraZoomSpeed * Vector3.forward);
             }
         }
-    }
-
-    private void OnMouseChangedPosition()
-    {
-        if (_followingGameObject == null) return;
-
-        var ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity, layerMask))
-        {
-            Vector3 newPosition = MathUtil.RoundTo(raycastHit.point, 0.5f);
-            _followingGameObject.transform.position = newPosition;
-
-            OverlapChecker overlapChecker = _followingGameObject.GetComponent<OverlapChecker>();
-
-            isAvailableToPlace = overlapChecker.CanSpawnInLocation(newPosition);
-            overlapChecker.ChangeMaterialAvailable(isAvailableToPlace);
-        }
-
-    }
-
-
-
-    public void AddFollowingMouseItem(Func<RaycastHit, bool> actionAfterMouseClick)
-    {
-        _actionForBuyingItems = actionAfterMouseClick;
-        _cursorChanger.ChangeCursor(CursorChanger.CursorType.Seed);
-    }
-    
-    public void AddFollowingMouseItem(Func<RaycastHit, bool> actionAfterMouseClick, GameObject followingObject)
-    {
-        _actionForBuyingItems = actionAfterMouseClick;
-        _followingGameObject = followingObject;
     }
 
     /**
@@ -226,13 +111,12 @@ public class InputController : MonoBehaviour
             MoveCamera(Vector3.forward);
         }
     }
-    
+
     /**
      * Camera movement is player using keybord movements
      */
     private void CheckAndMoveCameraByKeyboard()
     {
-
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -241,11 +125,10 @@ public class InputController : MonoBehaviour
             horizontal *= 2;
             vertical *= 2;
         }
-        
-        MoveCamera(new Vector3(horizontal,0,vertical));
+
+        MoveCamera(new Vector3(horizontal, 0, vertical));
     }
-
-
+    
     /// <summary>
     /// Moving camera in the specified direction
     /// </summary>

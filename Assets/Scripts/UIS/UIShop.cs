@@ -30,7 +30,6 @@ public class UIShop : MonoBehaviour
     private void Awake()
     {
         _itemsList = new List<GameObject>();
-        UpdateItemsPanel();
     }
 
     /// <summary>
@@ -78,5 +77,10 @@ public class UIShop : MonoBehaviour
             ShopPage.Neutral => neutralItem,
             _ => Array.Empty<ObjectInformation>()
         };
+    }
+
+    private void OnEnable()
+    {
+        UpdateItemsPanel();
     }
 }

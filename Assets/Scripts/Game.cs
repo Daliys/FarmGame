@@ -44,4 +44,9 @@ public class Game : MonoBehaviour
         return money >= cost;
     }
 
+    public int GetCurrentMoney()
+    {
+        return money;
+    }
+
 }
