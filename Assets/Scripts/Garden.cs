@@ -86,7 +86,6 @@ public class Garden : MonoBehaviour
     public void StartWatering()
     {
         // Doing some watering 
-
         StartCoroutine(WaitBeforeHarvest());
     }
 

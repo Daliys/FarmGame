@@ -82,11 +82,18 @@ public class TasksManager : MonoBehaviour
 
     public void AddMoveToPositionAction(Vector3 position)
     {
-        if (playerNavMeshAgent)
-        {
-            MoveInPositionTask moveInPositionTask = new MoveInPositionTask(playerNavMeshAgent, position, ActionWhenTaskFinished);
-            _taskList.Add(moveInPositionTask);
+        if (!playerNavMeshAgent) return;
+
+        if (_taskList.Count > 0 && _taskList[^1] is MoveInPositionTask )
+        { 
+           _taskList.RemoveAt(_taskList.Count-1);
+           if (_taskList.Count == 0) _currentTask = null;
         }
+        
+        
+        MoveInPositionTask moveInPositionTask = new MoveInPositionTask(playerNavMeshAgent, position, ActionWhenTaskFinished);
+        _taskList.Add(moveInPositionTask);
+
     }
 
     public void CancelAllTask()

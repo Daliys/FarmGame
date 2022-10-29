@@ -73,7 +73,7 @@ namespace Tasks
         /// <param name="isFinishedSuccessful">Is the Moving task was successful?</param>
         private void OnMovingToGardenTaskEnd(bool isFinishedSuccessful)
         {
-            _garden.StartWatering();
+            if(isFinishedSuccessful)_garden.StartWatering();
             ActionWhenTaskFinished.Invoke(isFinishedSuccessful);
         }
         
