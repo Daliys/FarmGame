@@ -7,18 +7,22 @@ public class Game : MonoBehaviour
      * Action calls when amount of money changing
      */
     public static event Action<int> OnMoneyChanged;
-
-    private void Awake()
-    {
-        OnMoneyChanged?.Invoke(money);
-    }
-
+    
     /**
      * Player's current amount of money
      */
     [SerializeField] private int money;
 
+    private bool _isPaused = false;
 
+    
+
+
+    private void Awake()
+    {
+        OnMoneyChanged?.Invoke(money);
+    }
+    
     /// <summary>
     /// Checking and processing buying of item
     /// </summary>
@@ -48,5 +52,15 @@ public class Game : MonoBehaviour
     {
         return money;
     }
-
+    
+    
+    public bool IsPaused
+    {
+        get => _isPaused;
+        set
+        {
+            _isPaused = value;
+            Time.timeScale = value? 0 : 1;
+        }
+    }
 }

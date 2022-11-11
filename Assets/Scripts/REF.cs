@@ -12,6 +12,7 @@ public class REF : MonoBehaviour
    [SerializeField] private StoreHouseInventory storeHouseInventory;
    [SerializeField] private PurchaseProcessing purchaseProcessing;
    [SerializeField] private UI ui;
+   [SerializeField] private DayTimer dayTimer;
 
    [SerializeField] private GameObject worldObjectsCanvas;
 
@@ -46,4 +47,7 @@ public class REF : MonoBehaviour
    public PurchaseProcessing PurchaseProcessing => purchaseProcessing;
    
    public UI UI => ui;
+   
+   public DayTimer DayTimer => dayTimer;
+
 }

@@ -1,22 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LightingManager : MonoBehaviour
 {
     [SerializeField] private Light directionalLight;
     [SerializeField] private LightPreset lightPreset;
-    [SerializeField, Range(0, 24)] private float timeOfDay;
-    [SerializeField] private float daySpeed;
-    
-    private void FixedUpdate()
+
+    public void UpdateTime(float timePercent)
     {
-        if(lightPreset == null) return;
-        
-        timeOfDay += Time.deltaTime * daySpeed;
-        timeOfDay %= 24;
-        UpdateLighting(timeOfDay/24);
+        UpdateLighting(timePercent);
     }
 
     private void UpdateLighting(float timePercent)
