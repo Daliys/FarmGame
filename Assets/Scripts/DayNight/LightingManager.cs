@@ -1,13 +1,23 @@
 using UnityEngine;
 
+[ExecuteAlways]
 public class LightingManager : MonoBehaviour
 {
     [SerializeField] private Light directionalLight;
     [SerializeField] private LightPreset lightPreset;
+    [SerializeField, Range(0, 24)] private float timeOfDay;
 
     public void UpdateTime(float timePercent)
     {
         UpdateLighting(timePercent);
+    }
+
+    private void Update()
+    {
+        if (!Application.isPlaying)
+        {
+            UpdateLighting(timeOfDay/24);
+        }
     }
 
     private void UpdateLighting(float timePercent)
